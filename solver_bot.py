@@ -16,13 +16,7 @@ def handle(msg):
         if message_is_command:
             if text == '/start':
                 firstname = msg['from'].get('first_name')
-                bot.sendMessage(chat_id, u'Добро пожаловать, '
-                                + firstname + u'!\nНачните работать..')
-
-
-def on_callback_query(msg):
-    content_type, chat_type, chat_id = telepot.glance(msg['message'])
-    query_id, from_id, data = telepot.glance(msg, flavor='callback_query')
+                bot.sendMessage(chat_id, u'Добро пожаловать, ' + firstname + u'!')
 
 
 if __name__ == "__main__":
@@ -31,7 +25,6 @@ if __name__ == "__main__":
     bot = telepot.Bot(TOKEN)
     answerer = telepot.helper.Answerer(bot)
     MessageLoop(bot, {'chat': handle,
-                      'callback_query': on_callback_query
                       }).run_as_thread()
 
     print('Listening ...')
