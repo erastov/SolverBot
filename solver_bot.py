@@ -3,7 +3,7 @@ import re
 import time
 import telepot
 from telepot.loop import MessageLoop
-from SolverBot.compress import encode
+from .compress import encode
 
 
 def handle(msg):
