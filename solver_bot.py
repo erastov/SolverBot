@@ -40,7 +40,7 @@ answerer = telepot.helper.Answerer(bot)
 MessageLoop(bot, {'chat': handle,
                   'callback_query': on_callback_query
                   }).run_as_thread()
-print 'Listening ...'
+print('Listening ...')
 
 # Keep the program running.
 while 1:
