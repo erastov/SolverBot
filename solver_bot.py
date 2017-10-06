@@ -25,15 +25,17 @@ def on_callback_query(msg):
     query_id, from_id, data = telepot.glance(msg, flavor='callback_query')
 
 
-TOKEN = '464271886:AAFNntR3dtxjBoO1SrdM9RGWI3SCl14Taxs'
+if __name__ == "__main__":
+    TOKEN = '464271886:AAFNntR3dtxjBoO1SrdM9RGWI3SCl14Taxs'
 
-bot = telepot.Bot(TOKEN)
-answerer = telepot.helper.Answerer(bot)
-MessageLoop(bot, {'chat': handle,
-                  'callback_query': on_callback_query
-                  }).run_as_thread()
-print('Listening ...')
+    bot = telepot.Bot(TOKEN)
+    answerer = telepot.helper.Answerer(bot)
+    MessageLoop(bot, {'chat': handle,
+                      'callback_query': on_callback_query
+                      }).run_as_thread()
 
-# Keep the program running.
-while 1:
-    time.sleep(10)
+    print('Listening ...')
+
+    # Keep the program running.
+    while 1:
+        time.sleep(10)
