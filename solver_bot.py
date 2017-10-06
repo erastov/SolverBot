@@ -3,6 +3,7 @@ import re
 import time
 import telepot
 from telepot.loop import MessageLoop
+from compress import encode
 
 
 def handle(msg):
