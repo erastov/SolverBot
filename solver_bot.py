@@ -1,15 +1,11 @@
 ﻿# coding: utf-8
 import re
 import time
+import sys
+# sys.path.insert(0, 'C:\\Users\\rusfee\PycharmProjects\SolverBot\Lib\site-packages')
+
 import telepot
 from telepot.loop import MessageLoop
-# from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-# from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
-# import sys
-#
-# sys.path.insert(0, '/var/beacon/clr/scripts')
-# from toolsofbot import action, add_member, get_profile_info, get_alerts, delete_member
-# from toolsofbot import create_inline_buttons, create_beautiful_msg
 
 
 def handle(msg):
@@ -33,7 +29,7 @@ def on_callback_query(msg):
     query_id, from_id, data = telepot.glance(msg, flavor='callback_query')
 
 
-TOKEN = '376839159:AAGRSibs1XMz9WiNNSKGsLjP9X60guevB8A'
+TOKEN = '464271886:AAFNntR3dtxjBoO1SrdM9RGWI3SCl14Taxs'
 
 bot = telepot.Bot(TOKEN)
 answerer = telepot.helper.Answerer(bot)
