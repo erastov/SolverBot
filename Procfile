@@ -1,1 +1,1 @@
-worker: python solver_bot.py
+web: python solver_bot.py
