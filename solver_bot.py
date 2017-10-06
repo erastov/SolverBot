@@ -1,9 +1,6 @@
 ﻿# coding: utf-8
 import re
 import time
-import sys
-# sys.path.insert(0, 'C:\\Users\\rusfee\PycharmProjects\SolverBot\Lib\site-packages')
-
 import telepot
 from telepot.loop import MessageLoop
 
@@ -19,9 +16,8 @@ def handle(msg):
         if message_is_command:
             if text == '/start':
                 firstname = msg['from'].get('first_name')
-                bot.sendMessage(chat_id, u'Добро пожаловать в SAS AntiFraudBot, '
+                bot.sendMessage(chat_id, u'Добро пожаловать, '
                                 + firstname + u'!\nНачните работать..')
-
 
 
 def on_callback_query(msg):
