@@ -3,7 +3,7 @@ import re
 import time
 import telepot
 from telepot.loop import MessageLoop
-from compress import encode
+from SolverBot.compress import encode
 
 
 def handle(msg):
@@ -18,6 +18,8 @@ def handle(msg):
             if text == '/start':
                 firstname = msg['from'].get('first_name')
                 bot.sendMessage(chat_id, u'Добро пожаловать, ' + firstname + u'!')
+        else:
+            bot.sendMessage(chat_id, encode(text))
 
 
 if __name__ == "__main__":
