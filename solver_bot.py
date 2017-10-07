@@ -3,7 +3,9 @@ import re
 import time
 import telepot
 from telepot.loop import MessageLoop
-from compress import encode
+from compress import arithm_decode, arithm_encode, pretty_msg_arifm, bwt_decode, bwt_encode, pretty_msg_bwt
+
+type_compress = None
 
 
 def handle(msg):
@@ -11,15 +13,30 @@ def handle(msg):
     print(msg)
 
     if content_type == 'text':
-        text = msg['text'].strip().lower()
-        message_is_command = re.match(r'/[a-z_]+$', text)
+        text = msg['text'].strip()
+        message_is_arifm = re.match(r'арифм .+$', text.lower())
+        message_is_bwt = re.match(r'bwt .+$', text.lower())
+        message_is_command = re.match(r'/[a-z_]+$', text.lower())
 
         if message_is_command:
             if text == '/start':
                 firstname = msg['from'].get('first_name')
                 bot.sendMessage(chat_id, u'Добро пожаловать, ' + firstname + u'!')
-        else:
-            bot.sendMessage(chat_id, encode(text))
+
+        elif message_is_arifm:
+            word = text.split()[1]
+            n = len(word)
+            code, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
+            calc = arithm_decode(n, code, sorted_ranges)
+            answer = pretty_msg_arifm(code, sorted_freqs, sorted_ranges, new_ranges, calc)
+
+        elif message_is_bwt:
+            word = text.split()[1]
+            top_list, code, index = bwt_encode(word)
+            solve, s = bwt_decode(code, index)
+            answer = pretty_msg_bwt(top_list, code, index, solve, s)
+
+        bot.sendMessage(chat_id, answer)
 
 
 if __name__ == "__main__":
