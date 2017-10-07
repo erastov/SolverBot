@@ -6,15 +6,15 @@ Range = namedtuple('Range', 'left right')
 
 def main():
     word = 'ABACABA'
-    # n = len(word)
-    # code, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
-    # calc = arithm_decode(n, code, sorted_ranges)
-    #
-    # print(pretty_msg(code, sorted_freqs, sorted_ranges, new_ranges, calc))
+    n = len(word)
+    code, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
+    calc = arithm_decode(n, code, sorted_ranges)
 
-    top_list, code, index = bwt_encode(word)
-    solve, s = bwt_decode(code, index)
-    print(pretty_msg_bwt(top_list, code, index, solve, s))
+    print(pretty_msg_arifm(code, sorted_freqs, sorted_ranges, new_ranges, calc))
+
+    # top_list, code, index = bwt_encode(word)
+    # solve, s = bwt_decode(code, index)
+    # print(pretty_msg_bwt(top_list, code, index, solve, s))
 
 
 def pretty_msg_bwt(top_list, code, index, solve, s):
@@ -35,7 +35,7 @@ def pretty_msg_bwt(top_list, code, index, solve, s):
     return ''.join(msg)
 
 
-def pretty_msg_arifm(code, sorted_freqs, sorted_ranges, new_ranges, calc):
+def pretty_msg_arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, calc):
     msg = ['-----Кодирование-----\n\nЧастоты:\n']
 
     for letter, freq in sorted_freqs:
@@ -51,13 +51,13 @@ def pretty_msg_arifm(code, sorted_freqs, sorted_ranges, new_ranges, calc):
         msg.append('Low = {0}\n'.format(left_str))
         msg.append('High = {0}\n'.format(right_str))
 
-    msg.append('\nКод: ' + str(code))
+    msg.append('\nКод: ' + code_str + ' = ' + str(code))
     msg.append('\n\n-----Декодирование-----\n\n')
     s = ''.join(letter for letter, null in calc)
     msg.append('Слово: {0}\n'.format(s))
     msg.append('Разбор:\n')
     for letter, resh in calc:
-        msg.append('{0}: {1}\n'.format(letter, resh))
+        msg.append('{0}: код = {1}\n'.format(letter, resh))
 
     return ''.join(msg)
 
@@ -95,8 +95,9 @@ def arithm_encode(word):
         new_ranges.append(tuple([letter, Range(left, right), left_str, right_str]))
 
     code = (left + right)/2
+    code_str = '({0:f} + {1:f}) / 2'.format(left, right, code)
 
-    return code, sorted_freqs, sorted_ranges, new_ranges
+    return code, code_str, sorted_freqs, sorted_ranges, new_ranges
 
 
 def arithm_decode(n, code, ranges):
