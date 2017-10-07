@@ -26,9 +26,9 @@ def handle(msg):
         elif message_is_arifm:
             word = text.split()[1]
             n = len(word)
-            code, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
+            code, code_str, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
             calc = arithm_decode(n, code, sorted_ranges)
-            answer = pretty_msg_arifm(code, sorted_freqs, sorted_ranges, new_ranges, calc)
+            answer = pretty_msg_arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, calc)
 
         elif message_is_bwt:
             word = text.split()[1]
