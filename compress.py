@@ -27,8 +27,10 @@ def pretty_msg_bwt(top_list, code, index, solve, s):
     msg.append('\nКод: ' + str(code))
     msg.append('\nИндекс: ' + str(index + 1))
     msg.append('\n\n-----Декодирование-----\n\n')
+    ind = 1
     for i in solve:
-        msg.append('{0}\n'.format(i))
+        msg.append('{1}. {0}\n'.format(i, ind))
+        ind += 1
     msg.append('\nСлово: ' + s)
     return ''.join(msg)
 
