@@ -18,7 +18,7 @@ def handle(msg):
         message_is_arifm = re.match(r'арифм .+$', text.lower())
         message_is_bwt = re.match(r'bwt .+$', text.lower())
         message_is_command = re.match(r'/[a-z_]+$', text.lower())
-        answer = 'Что-то не понимаю :('
+        answer = 'Что-то не понимаю :(\nПосмотри сюда /help'
 
         if message_is_command:
             if text == '/start':
