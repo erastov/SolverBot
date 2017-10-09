@@ -25,7 +25,7 @@ def handle(msg):
                 firstname = msg['from'].get('first_name')
                 bot.sendMessage(chat_id, u'Добро пожаловать, ' + firstname + u'!')
             elif text == '/help':
-                bot.sendMessage(chat_id, u'Чтобы получить решение отправьте тип сжатия и '
+                bot.sendMessage(chat_id, u'Чтобы получить решение, отправьте тип сжатия и '
                                          u'слово через пробел. Например: '
                                          u'bwt кох-и-ноор_ или арифм ABACABA')
         else:
