@@ -5,6 +5,7 @@ Range = namedtuple('Range', 'left right')
 
 
 def main():
+    """For tests"""
     word = 'ABACABA'
     n = len(word)
     code, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
@@ -18,6 +19,7 @@ def main():
 
 
 def pretty_msg_bwt(top_list, code, index, solve, s):
+    """Create pretty message for output bwt compress"""
     msg = ['-----Кодирование-----\n\n']
     sorted_top_list = sorted(top_list, reverse=False)
 
@@ -36,6 +38,7 @@ def pretty_msg_bwt(top_list, code, index, solve, s):
 
 
 def pretty_msg_arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, calc):
+    """Create pretty message for output arifm compress"""
     msg = ['-----Кодирование-----\n\nЧастоты:\n']
 
     for letter, freq in sorted_freqs:
@@ -63,6 +66,7 @@ def pretty_msg_arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, ca
 
 
 def get_ranges(word):
+    """Generate range of frequencies for arifm compress"""
     n = len(word)
     freqs = {i: word.count(i) / n for i in word}
     sorted_freqs = sorted(freqs.items(), key=operator.itemgetter(1), reverse=True)
