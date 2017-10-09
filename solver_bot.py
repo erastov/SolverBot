@@ -4,6 +4,7 @@ import time
 import telepot
 from telepot.loop import MessageLoop
 from compress import arithm_decode, arithm_encode, pretty_msg_arifm, bwt_decode, bwt_encode, pretty_msg_bwt
+import prettymsg
 
 type_compress = None
 
@@ -28,13 +29,13 @@ def handle(msg):
             n = len(word)
             code, code_str, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
             calc = arithm_decode(n, code, sorted_ranges)
-            answer = pretty_msg_arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, calc)
+            answer = prettymsg.arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, calc)
 
         elif message_is_bwt:
             word = text.split()[1]
             top_list, code, index = bwt_encode(word)
             solve, s = bwt_decode(code, index)
-            answer = pretty_msg_bwt(top_list, code, index, solve, s)
+            answer = prettymsg.bwt(top_list, code, index, solve, s)
 
         bot.sendMessage(chat_id, answer)
 
