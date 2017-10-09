@@ -3,7 +3,7 @@ import re
 import time
 import telepot
 from telepot.loop import MessageLoop
-from compress import arithm_decode, arithm_encode, pretty_msg_arifm, bwt_decode, bwt_encode, pretty_msg_bwt
+from compress import arithm_decode, arithm_encode, bwt_decode, bwt_encode
 import prettymsg
 
 type_compress = None
