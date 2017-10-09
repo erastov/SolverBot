@@ -25,25 +25,24 @@ def handle(msg):
                 firstname = msg['from'].get('first_name')
                 bot.sendMessage(chat_id, u'Добро пожаловать, ' + firstname + u'!')
             elif text == '/help':
-                bot.sendMessage(chat_id, u'Бот решает два алгоритма сжатия. '
-                                         u'Чтобы получить решение отправьте тип сжатия и '
+                bot.sendMessage(chat_id, u'Чтобы получить решение отправьте тип сжатия и '
                                          u'слово через пробел. Например: '
                                          u'bwt кох-и-ноор_ или арифм ABACABA')
+        else:
+            if message_is_arifm:
+                word = text.split()[1]
+                n = len(word)
+                code, code_str, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
+                calc = arithm_decode(n, code, sorted_ranges)
+                answer = prettymsg.arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, calc)
 
-        elif message_is_arifm:
-            word = text.split()[1]
-            n = len(word)
-            code, code_str, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
-            calc = arithm_decode(n, code, sorted_ranges)
-            answer = prettymsg.arifm(code, code_str, sorted_freqs, sorted_ranges, new_ranges, calc)
+            elif message_is_bwt:
+                word = text.split()[1]
+                top_list, code, index = bwt_encode(word)
+                solve, s = bwt_decode(code, index)
+                answer = prettymsg.bwt(top_list, code, index, solve, s)
 
-        elif message_is_bwt:
-            word = text.split()[1]
-            top_list, code, index = bwt_encode(word)
-            solve, s = bwt_decode(code, index)
-            answer = prettymsg.bwt(top_list, code, index, solve, s)
-
-        bot.sendMessage(chat_id, answer)
+            bot.sendMessage(chat_id, answer)
 
 
 if __name__ == "__main__":
