@@ -88,10 +88,10 @@ def arithm_encode(word):
     for letter in word:
         new_right = left + (right - left) * ranges[letter].right
         new_left = left + (right - left) * ranges[letter].left
+        left_str = '{0:f} + ({1:f} - {0:f}) * {2:f}'.format(left, right, ranges[letter].left)
+        right_str = '{0:f} + ({1:f} - {0:f}) * {2:f}'.format(left, right, ranges[letter].right)
         left = new_left
         right = new_right
-        left_str = '{0:f} + ({1:f} - {0:f}) * {2:f}'.format(left, right, ranges[letter].right)
-        right_str = '{0:f} + ({1:f} - {0:f}) * {2:f}'.format(left, right, ranges[letter].left)
         new_ranges.append(tuple([letter, Range(left, right), left_str, right_str]))
 
     code = (left + right)/2
@@ -102,12 +102,13 @@ def arithm_encode(word):
 
 def arithm_decode(n, code, ranges):
     calc = []
+    calc_str = str(code)
     for i in range(n):
         for letter, rangee in ranges:
             if rangee.left <= code < rangee.right:
+                calc.append(tuple([letter, calc_str]))
                 new_code = (code - rangee.left) / (rangee.right - rangee.left)
                 calc_str = '({0:f} - {1:f}) / ({2:f} - {1:f}) = {3:f}'.format(code, rangee.left, rangee.right, new_code)
-                calc.append(tuple([letter, calc_str]))
                 code = new_code
                 break
     return calc
