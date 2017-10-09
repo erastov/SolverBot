@@ -9,7 +9,7 @@ def main():
     """For tests"""
     word = 'ABACABA'
     n = len(word)
-    code, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
+    code, code_str, sorted_freqs, sorted_ranges, new_ranges = arithm_encode(word)
     calc = arithm_decode(n, code, sorted_ranges)
 
     print(prettymsg.arifm(code, sorted_freqs, sorted_ranges, new_ranges, calc))
