@@ -18,11 +18,17 @@ def handle(msg):
         message_is_arifm = re.match(r'арифм .+$', text.lower())
         message_is_bwt = re.match(r'bwt .+$', text.lower())
         message_is_command = re.match(r'/[a-z_]+$', text.lower())
+        answer = 'Что-то не понимаю :('
 
         if message_is_command:
             if text == '/start':
                 firstname = msg['from'].get('first_name')
                 bot.sendMessage(chat_id, u'Добро пожаловать, ' + firstname + u'!')
+            elif text == '/help':
+                bot.sendMessage(chat_id, u'Бот решает два алгоритма сжатия. '
+                                         u'Чтобы получить решение отправьте тип сжатия и '
+                                         u'слово через пробел. Например: '
+                                         u'bwt кох-и-ноор_ или арифм ABACABA')
 
         elif message_is_arifm:
             word = text.split()[1]
